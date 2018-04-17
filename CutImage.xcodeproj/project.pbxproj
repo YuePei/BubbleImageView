@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F4C3D7C2085A0DC007C06B0 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C3D7B2085A0DC007C06B0 /* CustomView.m */; };
+		9F4C3D7F2085BF47007C06B0 /* BubbltView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4C3D7E2085BF47007C06B0 /* BubbltView.m */; };
 		9F5BD56F20846869001B781F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5BD56E20846869001B781F /* AppDelegate.m */; };
 		9F5BD57220846869001B781F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5BD57120846869001B781F /* ViewController.m */; };
 		9F5BD57520846869001B781F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F5BD57320846869001B781F /* Main.storyboard */; };
@@ -16,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F4C3D7A2085A0DC007C06B0 /* CustomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
+		9F4C3D7B2085A0DC007C06B0 /* CustomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
+		9F4C3D7D2085BF47007C06B0 /* BubbltView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BubbltView.h; sourceTree = "<group>"; };
+		9F4C3D7E2085BF47007C06B0 /* BubbltView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BubbltView.m; sourceTree = "<group>"; };
 		9F5BD56A20846869001B781F /* CutImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CutImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F5BD56D20846869001B781F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9F5BD56E20846869001B781F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -62,6 +68,10 @@
 				9F5BD56E20846869001B781F /* AppDelegate.m */,
 				9F5BD57020846869001B781F /* ViewController.h */,
 				9F5BD57120846869001B781F /* ViewController.m */,
+				9F4C3D7A2085A0DC007C06B0 /* CustomView.h */,
+				9F4C3D7B2085A0DC007C06B0 /* CustomView.m */,
+				9F4C3D7D2085BF47007C06B0 /* BubbltView.h */,
+				9F4C3D7E2085BF47007C06B0 /* BubbltView.m */,
 				9F5BD57320846869001B781F /* Main.storyboard */,
 				9F5BD57620846869001B781F /* Assets.xcassets */,
 				9F5BD57820846869001B781F /* LaunchScreen.storyboard */,
@@ -143,6 +153,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F5BD57220846869001B781F /* ViewController.m in Sources */,
+				9F4C3D7C2085A0DC007C06B0 /* CustomView.m in Sources */,
+				9F4C3D7F2085BF47007C06B0 /* BubbltView.m in Sources */,
 				9F5BD57D20846869001B781F /* main.m in Sources */,
 				9F5BD56F20846869001B781F /* AppDelegate.m in Sources */,
 			);
@@ -281,6 +293,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 47A3N54MRY;
 				INFOPLIST_FILE = CutImage/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Peyton.CutImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -295,6 +308,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 47A3N54MRY;
 				INFOPLIST_FILE = CutImage/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Peyton.CutImage;
 				PRODUCT_NAME = "$(TARGET_NAME)";

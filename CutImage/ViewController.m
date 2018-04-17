@@ -7,8 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "CustomView.h"
+#import "BubbltView.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *iv;
+//数量
+@property (nonatomic, assign)NSInteger bubbleNumber;
 
 @end
 
@@ -16,13 +21,98 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+//    UIImage *ima = [self cutImageWithImage:[UIImage imageNamed:@"pic"] targetSize:CGSizeMake(300, 100)];
+//    self.iv.image = ima;
+//    CustomView *customView = [[CustomView alloc]initWithFrame:CGRectMake(20, 50, 300, 300)];
+//    customView.backgroundColor = [UIColor lightGrayColor];
+//    [self.view addSubview:customView];
+//
+    
 }
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    if (self.bubbleNumber <= 30) {
+        
+        BubbltView *bubbleImageView = [[BubbltView alloc]initWithMaxHeight:self.view.bounds.size.height / 2.5 maxWidth: self.view.bounds.size.width / 1.5 maxFrame:CGRectMake([self makeRandomNumberFromMin:0 toMax:self.view.bounds.size.width], self.view.center.y, 50, 50) andSuperView:self.view];
+        self.bubbleNumber++;
+    }
+    
+}
+- (CGFloat)makeRandomNumberFromMin:(CGFloat)min toMax: (CGFloat)max
+{
+    NSInteger precision = 100;
+    
+    CGFloat subtraction = ABS(max - min);
+    
+    subtraction *= precision;
+    
+    CGFloat randomNumber = arc4random() % ((int)subtraction+1);
+    
+    randomNumber /= precision;
+    
+    randomNumber += min;
+    
+    //返回结果
+    return randomNumber;
+}
+- (UIImage *)cutImageWithImage:(UIImage *)image targetSize:(CGSize )targetSize {
+    
+    UIImage *image1 = image;
+    //原图片尺寸
+    CGFloat imageWidth = image1.size.width;
+    CGFloat imageHeight = image1.size.height;
+    //目标尺寸
+    CGFloat targetWidth = targetSize.width;
+    CGFloat targetHeight = targetSize.height;
+    //最终比例
+    CGFloat scaleFactor = 0;
+    CGPoint startPoint = CGPointMake(0, 0);
+    
+    //如果图片是竖着的，即图片高度大于宽度
+    if (imageWidth < imageHeight) {
+        CGFloat tempW = targetWidth;
+        CGFloat tempH = targetHeight;
+        
+        targetWidth = tempH;
+        targetHeight = tempW;
+    }
+    //如果图片大小 < 目标图片大小, 那就返回该图片,不做切割
+    if (targetWidth > imageWidth && targetHeight > imageHeight) {
+        return image1;
+    }
+    if (CGSizeEqualToSize(CGSizeMake(imageWidth, imageHeight), CGSizeMake(targetWidth, targetHeight)) == NO) {
+        //如果两个尺寸不同则可以开始切割
+        CGFloat widthFactor = targetWidth / imageWidth;
+        CGFloat heightFactor = targetHeight / imageHeight;
+        if (widthFactor < 1 && heightFactor < 1) {
+            //源图片尺寸宽高都比目标尺寸的宽高都大
+            //判断哪个比例更小, 按照更小的比例
+            if (widthFactor < heightFactor) {
+                scaleFactor = widthFactor;
+            }else {
+                scaleFactor = heightFactor;
+            }
+        }else if (widthFactor > 1 && heightFactor < 1) {
+            //
+            scaleFactor = widthFactor;
+        }else if(widthFactor < 1 && heightFactor > 1) {
+            //
+            scaleFactor = heightFactor;
+        }else {
+            //目标尺寸的宽高都大于原始图片的尺寸的宽高, 建议不要做放大处理, 图片易失真
+        }
+    }
+    targetHeight = scaleFactor * imageHeight;
+    targetWidth = scaleFactor * imageWidth;
+    UIGraphicsBeginImageContext(CGSizeMake(targetWidth, targetHeight));
+    CGRect thumbnailRect = CGRectZero;
+    thumbnailRect.origin= startPoint;
+    thumbnailRect.size.width = targetWidth;
+    thumbnailRect.size.height = targetHeight;
+    [image1 drawInRect:thumbnailRect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    return newImage;
+    
 }
 
 
