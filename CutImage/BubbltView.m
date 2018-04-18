@@ -8,20 +8,23 @@
 
 #import "BubbltView.h"
 @interface BubbltView ()
+//.............关于贝塞尔曲线的设置...................
 //贝塞尔曲线的最大高度
 @property (nonatomic, assign)CGFloat maxHeight;
 //贝塞尔曲线的最大宽度
 @property (nonatomic, assign)CGFloat maxWidth;
-//frame
+//每一次动画执行的贝塞尔曲线的最大高度和最大宽度
+@property (nonatomic, assign)CGFloat nowMaxHeight;
+
+@property (nonatomic, assign)CGFloat nowMaxWidth;
+
+//.............关于imageview的设置...................
+//初始frame
 @property (nonatomic, assign)CGRect originFrame;
 //泡泡的初始位置
 @property (nonatomic, assign)CGPoint originPoint;
 //泡泡从左侧开始还是从右侧开始往上冒
 @property (nonatomic, assign)BubbleKeypathType pathType;
-//每一次动画执行的最大高度和最大宽度
-@property (nonatomic, assign)CGFloat nowMaxHeight;
-
-@property (nonatomic, assign)CGFloat nowMaxWidth;
 
 @end
 
@@ -53,8 +56,6 @@
     //开始绘制泡泡的贝塞尔曲线
     UIBezierPath *bezierPath = [UIBezierPath bezierPath];
     [bezierPath moveToPoint:self.originPoint];
-    [[UIColor brownColor] set];
-    [bezierPath fill];
     
     if (self.pathType == BubbltKeypathLeft) {
         CGPoint leftControllPoint = CGPointMake(self.originPoint.x - self.nowMaxWidth / 2, self.originPoint.y - self.nowMaxHeight / 4);
@@ -103,7 +104,7 @@
                           duration:0.1f
                            options:UIViewAnimationOptionTransitionCrossDissolve
                         animations:^{
-                            self.transform = CGAffineTransformMakeScale(1.3, 1.3);
+//                            self.transform = CGAffineTransformMakeScale(1.3, 1.3);
                         } completion:^(BOOL finished) {
                             if (finished == YES) {
                                 [self.layer removeAllAnimations];

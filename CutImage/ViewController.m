@@ -9,9 +9,10 @@
 #import "ViewController.h"
 #import "CustomView.h"
 #import "BubbltView.h"
+#import "SecondViewController.h"
+
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *iv;
 //数量
 @property (nonatomic, assign)NSInteger bubbleNumber;
 
@@ -23,11 +24,20 @@
     [super viewDidLoad];
 //    UIImage *ima = [self cutImageWithImage:[UIImage imageNamed:@"pic"] targetSize:CGSizeMake(300, 100)];
 //    self.iv.image = ima;
-//    CustomView *customView = [[CustomView alloc]initWithFrame:CGRectMake(20, 50, 300, 300)];
-//    customView.backgroundColor = [UIColor lightGrayColor];
-//    [self.view addSubview:customView];
-//
+    CustomView *customView = [[CustomView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64)];
+    customView.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:customView];
+
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view insertSubview:button aboveSubview:customView];
+    [button setTitle:@"jumpToSecond" forState:UIControlStateNormal];
+    [button setFrame:CGRectMake(150, 500, 100, 50)];
+    [button addTarget:self action:@selector(pushSecondVC) forControlEvents:UIControlEventTouchUpInside];
     
+}
+- (void)pushSecondVC {
+    SecondViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"second"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
